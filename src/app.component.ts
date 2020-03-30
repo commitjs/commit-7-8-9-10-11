@@ -5,7 +5,7 @@ import { detectChanges } from './decorators/detect-changes';
 import { ITodo } from './interfaces/todo';
 import { useState } from './utils/use-state';
 import { appRoutes } from './app-routes';
-import { creacteRef, bindRef } from './directives/ref';
+import { createRef, bindRef } from './directives/ref';
 // import { RouterLinkComponent } from './router/router-link.component';
 // import { RouterComponent } from './router/router.component';
 // import { createComponent } from './lib/creacte-component';
@@ -47,7 +47,7 @@ export class AppComponent {
 
   @detectChanges titleInputValue = '';
 
-  router = creacteRef();
+  router = createRef();
   @detectChanges val = 123;
   @detectChanges val2 = 'HELLO';
 

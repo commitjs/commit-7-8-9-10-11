@@ -16,7 +16,7 @@ const container = {
   }
 }
 
-export function creacteRef() {
+export function createRef() {
   const dir = directive(() => (part: AttributePart) => {
     container.set(dir, part.committer.element);
   })();
@@ -33,6 +33,16 @@ export const bindRef = directive((dir: any) => (node: AttributePart) => {
   state.set(node, dir);
   container.subscribe(dir, (data: any) => {
     node.setValue(data);
+    node.commit();
+  });
+});
+
+export const getRefProp = directive((dir: any, selector: (instance: any) => any) => (node: AttributePart) => {
+  const existingDirective = state.get(node);
+  if (existingDirective === dir) { return; }
+  state.set(node, dir);
+  container.subscribe(dir, (data: any) => {
+    node.setValue(selector(data));
     node.commit();
   });
 });
